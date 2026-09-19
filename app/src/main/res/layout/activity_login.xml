@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="24dp"
+
+    android:gravity="center_horizontal">
+
+    <!-- Logo -->
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:src="@drawable/logo_app"
+        android:layout_marginBottom="64dp"
+        android:contentDescription="App Logo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log in to your account"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Input Username -->
+    <TextView
+        android:id="@+id/tvToRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_gravity="start"
+        android:layout_marginBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your username"
+        android:inputType="text"
+        android:textSize="16sp"
+        android:background="@drawable/shape_edittext_outline"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Input Password -->
+    <TextView
+        android:id="@+id/tvToRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_gravity="start"
+        android:layout_marginBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your password"
+        android:inputType="textPassword"
+        android:textSize="16sp"
+        android:background="@drawable/shape_edittext_outline"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Button Login -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Log in"
+        android:textFontWeight="600"
+        android:textColor="@color/white"
+        android:background="@drawable/shape_button_primary"
+        app:backgroundTint="@null"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="24dp"/>
+
+    <!-- TextView to Register Page -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don’t have an account? "
+            android:textColor="@android:color/black"
+            android:textFontWeight="600"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tvToRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register here"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
