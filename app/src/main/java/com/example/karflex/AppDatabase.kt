@@ -6,9 +6,8 @@ import com.example.karflex.Rental
 import com.example.karflex.User
 import com.example.karflex.Vehicle
 
-@Database(entities = [User::class], [Vehicle::class], [Rental::class], version = 1)
+@Database(entities = [User::class,  Vehicle::class, Rental::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
-
 
     companion object {
         @Volatile
@@ -19,7 +18,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "app_database.db" // Nama file database SQLite di HP
+                    "karflex_database.db" // Nama file database SQLite di HP
                 ).build()
                 INSTANCE = instance
                 instance
