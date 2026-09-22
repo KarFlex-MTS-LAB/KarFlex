@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,46 +7,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
+    android:orientation="vertical"
     android:padding="24dp"
     tools:context=".OtpActivity">
 
-    <!-- Judul Halaman -->
+    <ImageButton
+        android:id="@+id/btnReturn"
+        android:layout_width="24dp"
+        android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Back Button"
+        android:src="@drawable/ic_arrow_back"
+        app:tint="@android:color/black" />
+
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:text="Verify with OTP Code"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
 
     <!-- Subjudul / Deskripsi -->
     <TextView
         android:id="@+id/tvSubtitle"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:paddingRight="28dp"
         android:text="Please enter the 4 digits code that has been sent to your SMS."
         android:textColor="@color/dark_gray"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        android:paddingRight="28dp"/>
+        android:textSize="14sp" />
 
+    <!-- Layout Kotak OTP (Dibuat center secara horizontal) -->
     <LinearLayout
         android:id="@+id/layoutOtpBoxes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSubtitle">
+        android:orientation="horizontal">
 
         <!-- Digit 1 -->
         <EditText
@@ -102,20 +104,19 @@
 
     </LinearLayout>
 
+    <!-- Layout Resend (Dibuat center secara horizontal) -->
     <LinearLayout
         android:id="@+id/layoutResend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="24dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutOtpBoxes">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Haven't received the code? "
+            android:text="Didn't recevie the code? "
             android:textColor="@android:color/black"
             android:textFontWeight="600"
             android:textSize="14sp" />
@@ -129,23 +130,23 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <!-- Tombol Konfirmasi -->
+    <!-- Spacer untuk mendorong tombol verify ke bagian bawah (Opsional, menghapus berat constraint bottom) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
     <Button
         android:id="@+id/btnVerify"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:text="Verify"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        android:textFontWeight="600"
-        android:backgroundTint="@color/primary"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/primary"
+        android:text="Verify"
+        android:textColor="@android:color/white"
+        android:textFontWeight="600"
+        android:textSize="16sp"
         app:cornerRadius="8dp" />
 
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
