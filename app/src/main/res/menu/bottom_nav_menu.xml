@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_browse"
-        android:icon="@drawable/ic_browse"
+        android:id="@+id/nav_car"
+        android:icon="@drawable/ic_car_selector"
         android:title="Browse" />
 
     <item
         android:id="@+id/nav_my_rental"
-        android:icon="@drawable/ic_rental"
+        android:icon="@drawable/ic_car_rental_selector"
         android:title="My Rental" />
 
     <item
         android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_profile"
+        android:icon="@drawable/ic_profile_selector"
         android:title="Profile" />
 </menu>

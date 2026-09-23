@@ -5,6 +5,12 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="fontFamily">@font/dm_sans</item>
         <item name="android:fontFamily">@font/dm_sans</item>
+
+    </style>
+
+    <style name="BottomNavActiveText" parent="TextAppearance.MaterialComponents.Caption">
+
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Theme.KarFlex" parent="Base.Theme.KarFlex" />
