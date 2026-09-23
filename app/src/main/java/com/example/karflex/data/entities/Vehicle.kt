@@ -1,8 +1,9 @@
-package com.example.karflex
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+package com.example.karflex.data.entities
 
-@Entity (tableName =  "Vehicle")
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName =  "Vehicle")
 data class Vehicle(
     @PrimaryKey(autoGenerate = true)
     val VehicleId: Int = 0,
