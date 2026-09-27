@@ -18,7 +18,7 @@
         android:background="@color/white"
         app:itemIconTint="@color/nav_item_color"
         app:itemTextColor="@color/nav_item_color"
-        app:itemActiveIndicatorStyle="@android:color/transparent"
+        app:itemActiveIndicatorStyle="@color/border"
         app:itemTextAppearanceActive="@style/BottomNavActiveText"
         app:itemIconSize="30dp"
         app:menu="@menu/bottom_nav_menu" />
