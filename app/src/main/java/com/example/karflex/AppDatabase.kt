@@ -11,7 +11,6 @@ import com.example.karflex.data.entities.Vehicle
 import com.example.karflex.data.dao.VehicleDAO
 import com.example.karflex.data.dao.UserDAO
 import com.example.karflex.data.repository.RentalRepository
-import com.example.karflex.data.repository.UserRepository
 
 @Database(entities = [User::class,  Vehicle::class, Rental::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
