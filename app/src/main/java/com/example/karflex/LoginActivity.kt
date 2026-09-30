@@ -12,6 +12,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,42 +44,44 @@ class LoginActivity : AppCompatActivity() {
 
         val btnReturn = findViewById<ImageButton>(R.id.btnReturn)
         val tvToRegister = findViewById<TextView>(R.id.tvToRegister)
+        val etUsername = findViewById<EditText>(R.id.etUsername)
+        val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
-    
-        btnReturn.setOnClickListener { 
-            finish()
-        }
-        
+
         tvToRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
         btnLogin.setOnClickListener {
-            val etUsername = findViewById<EditText>(R.id.etUsername)
-            val etPassword = findViewById<EditText>(R.id.etPassword)
+            val username = etUsername.text.toString()
+            val password = etPassword.text.toString()
 
-            val username = etUsername.text.toString().trim()
-            val password = etPassword.text.toString().trim()
-
-            if (username.isEmpty()) {
-                Toast.makeText(this, "Username must be filled!", Toast.LENGTH_SHORT).show()
+            if(username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (password.isEmpty()) {
-                Toast.makeText(this, "Password must be filled!", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
+            lifecycleScope.launch(Dispatchers.IO) {
+                val existingUser = AppDatabase.getDatabase(this@LoginActivity).UserDao().getUserByUsername(username)
+                if(existingUser == null) {
+                    runOnUiThread {
+                        Toast.makeText(this@LoginActivity, "User not found", Toast.LENGTH_SHORT).show()
+                    }
+                    return@launch
+                }
+                if (password != existingUser.password) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@LoginActivity, "Wrong password", Toast.LENGTH_SHORT).show()
+                    }
+                    return@launch
+                }
 
-            val isValidUser = true
-
-            if (!isValidUser) {
-                Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show()
-            } else {
-                val intent = Intent(this, OtpActivity::class.java)
+                val intent = Intent(this@LoginActivity, OtpActivity::class.java)
                 startActivity(intent)
+                finish()
             }
+
         }
     }
 }
