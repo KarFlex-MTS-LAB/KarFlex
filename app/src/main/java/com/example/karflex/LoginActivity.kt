@@ -53,6 +53,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        btnReturn.setOnClickListener {
+            finish()
+        }
+
         btnLogin.setOnClickListener {
             val username = etUsername.text.toString()
             val password = etPassword.text.toString()

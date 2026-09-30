@@ -9,6 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.karflex.data.entities.User
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +28,18 @@ class RegisterActivity : AppCompatActivity() {
         val initialTop = mainView.paddingTop
         val initialRight = mainView.paddingRight
         val initialBottom = mainView.paddingBottom
+
+        ViewCompat.setOnApplyWindowInsetsListener(mainView) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            v.setPadding(
+                initialLeft + systemBars.left,
+                initialTop + systemBars.top,
+                initialRight + systemBars.right,
+                initialBottom + systemBars.bottom
+            )
+            insets
+        }
 
         val tvToLogin = findViewById<TextView>(R.id.tvToLogin)
         val etUsername = findViewById<EditText>(R.id.etRegUsername)
