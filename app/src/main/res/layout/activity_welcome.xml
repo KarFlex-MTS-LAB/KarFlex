@@ -6,10 +6,11 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="24dp"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:id="@+id/main">
 
     <ImageView
-        android:layout_width="120dp"
+        android:layout_width="150dp"
         android:layout_height="40dp"
         android:src="@drawable/app_logo"
         android:scaleType="fitCenter"
@@ -43,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Find, book, and drive with ease. Simple car rentals for every trip."
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textColor="@color/dark_gray"
         android:gravity="center"
         android:layout_marginStart="16dp"
@@ -65,7 +66,7 @@
         android:textFontWeight="600"
         android:backgroundTint="@color/primary"
         android:layout_marginBottom="4dp"
-        app:cornerRadius="8dp" />
+        app:cornerRadius="100dp" />
 
     <Button
         android:id="@+id/btnRegister"
@@ -78,7 +79,7 @@
         android:textFontWeight="600"
         app:strokeColor="@color/primary"
         app:strokeWidth="1.5dp"
-        android:layout_marginBottom="8dp"
-        app:cornerRadius="8dp"/>
+        app:cornerRadius="100dp"
+        />
 
 </LinearLayout>

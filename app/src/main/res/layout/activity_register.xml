@@ -5,14 +5,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="24dp"
+    android:id="@+id/main"
     android:gravity="center_horizontal">
 
     <!-- Logo -->
     <ImageView
-        android:layout_width="120dp"
-        android:layout_height="40dp"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
         android:src="@drawable/app_logo"
         android:layout_marginBottom="48dp"
+        android:layout_marginTop="20dp"
         android:contentDescription="App Logo"/>
 
     <TextView
@@ -100,8 +102,8 @@
         android:textFontWeight="600"
         android:backgroundTint="@color/primary"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:cornerRadius="8dp" />
+        android:layout_marginBottom="12dp"
+        app:cornerRadius="100dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"

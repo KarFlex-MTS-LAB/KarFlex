@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".OtpActivity">
+    tools:context=".OtpActivity"
+    android:id="@+id/main"
+    >
 
     <ImageButton
         android:id="@+id/btnReturn"
@@ -21,7 +22,6 @@
         app:tint="@android:color/black" />
 
     <TextView
-        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -30,9 +30,7 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <!-- Subjudul / Deskripsi -->
     <TextView
-        android:id="@+id/tvSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -53,8 +51,8 @@
         <!-- Digit 1 -->
         <EditText
             android:id="@+id/etDigit1"
-            android:layout_width="54dp"
-            android:layout_height="60dp"
+            android:layout_width="72dp"
+            android:layout_height="84dp"
             android:layout_margin="6dp"
             android:background="@drawable/shape_edittext_outline"
             android:gravity="center"
@@ -66,8 +64,8 @@
         <!-- Digit 2 -->
         <EditText
             android:id="@+id/etDigit2"
-            android:layout_width="54dp"
-            android:layout_height="60dp"
+            android:layout_width="72dp"
+            android:layout_height="84dp"
             android:layout_margin="6dp"
             android:background="@drawable/shape_edittext_outline"
             android:gravity="center"
@@ -79,8 +77,8 @@
         <!-- Digit 3 -->
         <EditText
             android:id="@+id/etDigit3"
-            android:layout_width="54dp"
-            android:layout_height="60dp"
+            android:layout_width="72dp"
+            android:layout_height="84dp"
             android:layout_margin="6dp"
             android:background="@drawable/shape_edittext_outline"
             android:gravity="center"
@@ -92,8 +90,8 @@
         <!-- Digit 4 -->
         <EditText
             android:id="@+id/etDigit4"
-            android:layout_width="54dp"
-            android:layout_height="60dp"
+            android:layout_width="72dp"
+            android:layout_height="84dp"
             android:layout_margin="6dp"
             android:background="@drawable/shape_edittext_outline"
             android:gravity="center"
@@ -145,6 +143,6 @@
         android:textColor="@android:color/white"
         android:textFontWeight="600"
         android:textSize="16sp"
-        app:cornerRadius="8dp" />
+        app:cornerRadius="100dp" />
 
 </LinearLayout>

@@ -5,23 +5,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="24dp"
-
+    android:id="@+id/main"
     android:gravity="center_horizontal">
 
-    <!-- Logo -->
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:src="@drawable/app_logo"
-        android:layout_marginBottom="64dp"
-        android:contentDescription="App Logo"/>
+    <ImageButton
+        android:id="@+id/btnReturn"
+        android:layout_width="24dp"
+        android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Back Button"
+        android:src="@drawable/ic_arrow_back"
+        app:tint="@android:color/black"
+        android:layout_gravity="start"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Log in to your account"
+        android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textFontWeight="900"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please fill the credentials to continue"
+        android:textColor="@color/dark_gray"
+        android:textSize="14sp"
         android:layout_marginBottom="32dp"/>
 
     <!-- Input Username -->
@@ -85,8 +98,8 @@
         android:textFontWeight="600"
         android:backgroundTint="@color/primary"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:cornerRadius="8dp" />
+        android:layout_marginBottom="12dp"
+        app:cornerRadius="100dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -97,7 +110,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don;t have an account? "
+            android:text="Don't have an account? "
             android:textColor="@android:color/black"
             android:textFontWeight="600"
             android:textSize="14sp"/>

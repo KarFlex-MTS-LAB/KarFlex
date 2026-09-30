@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/main">
 
     <FrameLayout
         android:id="@+id/fragmentContainer"
@@ -13,14 +14,16 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
         app:itemIconTint="@color/nav_item_color"
         app:itemTextColor="@color/nav_item_color"
         app:itemActiveIndicatorStyle="@color/border"
         app:itemTextAppearanceActive="@style/BottomNavActiveText"
-        app:itemIconSize="30dp"
+        app:itemTextAppearanceInactive="@style/BottomNavInactiveText"
+        app:itemIconSize="32dp"
         app:menu="@menu/bottom_nav_menu" />
+
 
 </RelativeLayout>

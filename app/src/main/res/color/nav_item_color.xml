@@ -4,5 +4,5 @@
     <item android:color="@color/primary" android:state_checked="true" />
 
     <!-- Warna saat ikon/teks TIDAK DIPILIH -->
-    <item android:color="#9E9E9E" android:state_checked="false" />
+    <item android:color="#A2A3A2" android:state_checked="false" />
 </selector>
