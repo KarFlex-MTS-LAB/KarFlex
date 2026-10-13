@@ -83,7 +83,6 @@ class LoginActivity : AppCompatActivity() {
 
                 val intent = Intent(this@LoginActivity, OtpActivity::class.java)
                 startActivity(intent)
-                finish()
             }
 
         }
