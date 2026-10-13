@@ -1,7 +1,10 @@
 package com.example.karflex
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.telephony.SmsManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -10,14 +13,20 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.karflex.utils.SmsUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.jar.Manifest
+import kotlin.random.Random
 
 class LoginActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -81,10 +90,31 @@ class LoginActivity : AppCompatActivity() {
                     return@launch
                 }
 
-                val intent = Intent(this@LoginActivity, OtpActivity::class.java)
-                startActivity(intent)
-            }
+                val phoneNumber = existingUser.phoneNumber
 
+                withContext(Dispatchers.Main) {
+                    if (ContextCompat.checkSelfPermission(
+                            this@LoginActivity,
+                            android.Manifest.permission.SEND_SMS
+                        ) != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        ActivityCompat.requestPermissions(
+                            this@LoginActivity,
+                            arrayOf(android.Manifest.permission.SEND_SMS),
+                            100
+                        )
+                    } else {
+                        val otpAngka = Random.nextInt(1000, 9999).toString()
+
+                        SmsUtils.sentOtp(this@LoginActivity, phoneNumber, otpAngka);
+
+                        val intent = Intent(this@LoginActivity, OtpActivity::class.java)
+                        intent.putExtra("KODE_OTP_ASLI",otpAngka);
+                        intent.putExtra("NOMOR_HP", phoneNumber);
+                        startActivity(intent)
+                    }
+                }
+            }
         }
     }
 }
