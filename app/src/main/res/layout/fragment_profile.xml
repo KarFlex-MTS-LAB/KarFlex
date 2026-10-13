@@ -1,14 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    android:background="@android:color/white">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Judul Halaman Profil -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"
+        android:text="Profile Menu"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black" />
 
-</FrameLayout>
+    <!-- Wadah Utama Pembungkus Kedua Tombol (Memiliki Border & Rounded) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/shape_card_container"
+        android:clipToOutline="true"> <!-- Agar sudut tombol di dalam mengikuti kelengkungan kartu -->
+
+        <!-- 1. Tombol Navigasi: Rental History -->
+        <LinearLayout
+            android:id="@+id/btnRentalHistory"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <!-- Ikon di Kiri -->
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_rental_history"
+                android:contentDescription="Rental History Icon"
+                app:tint="@color/primary" />
+
+            <!-- Teks di Tengah -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:text="Rental History"
+                android:textFontWeight="500"
+                android:textSize="16sp"
+                android:textColor="@android:color/black" />
+
+            <!-- Ikon Panah di Kanan -->
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:src="@drawable/ic_arrow"
+                android:rotation="180"
+                android:contentDescription="Arrow Right"
+                app:tint="@color/dark_gray" />
+        </LinearLayout>
+
+        <!-- Garis Pemisah (Divider) Abu Muda di antara kedua tombol -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+
+        <!-- 2. Tombol Navigasi: Store Location -->
+        <LinearLayout
+            android:id="@+id/btnStoreLocation"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <!-- Ikon di Kiri -->
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_map_pin"
+                android:contentDescription="Store Location Icon"
+                app:tint="@color/primary" />
+
+            <!-- Teks di Tengah -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:text="Store Location"
+                android:textFontWeight="500"
+                android:textSize="16sp"
+                android:textColor="@android:color/black" />
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:src="@drawable/ic_arrow"
+                android:rotation="180"
+                android:contentDescription="Arrow Right"
+                app:tint="@color/dark_gray" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
