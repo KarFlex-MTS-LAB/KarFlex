@@ -50,4 +50,5 @@ dependencies {
     ksp("androidx.room:room-compiler:$roomVersion")
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
+    implementation("com.google.android.gms:play-services-auth-api-phone:18.0.1")
 }
