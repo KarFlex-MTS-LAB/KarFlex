@@ -139,7 +139,6 @@ class OtpActivity : AppCompatActivity() {
 
         task.addOnSuccessListener {
             Log.d("OTP_DEBUG", "SmsRetriever successfully started. Waiting for SMS...")
-            Toast.makeText(this@OtpActivity, "SmsRetriever is active!", Toast.LENGTH_SHORT).show()
         }
         task.addOnFailureListener {
             Log.e("OTP_DEBUG", "SmsRetriever failed to run.")
