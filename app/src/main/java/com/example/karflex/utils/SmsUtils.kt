@@ -20,7 +20,6 @@ object SmsUtils {
             }
 
             smsManager.sendTextMessage(destNumber, null, pesanOtp, null, null)
-            Toast.makeText(context, "OTP $otpAngka has been sent to $destNumber", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             Toast.makeText(context, "Failed send OTP due to ${e.message}", Toast.LENGTH_LONG).show()
         }
