@@ -6,6 +6,10 @@
 
 <p align="center"><strong>Simple vehicle rental for every trip.</strong></p>
 
+<p align="center">
+  <a href="https://github.com/KarFlex-MTS-LAB/KarFlex/actions/workflows/android-build-release.yml"><img src="https://github.com/KarFlex-MTS-LAB/KarFlex/actions/workflows/android-build-release.yml/badge.svg" alt="Android build status" /></a>
+</p>
+
 KarFlex is an Android vehicle-rental application for browsing available vehicles, renting a vehicle, managing active rentals, and finding the KarFlex store location.
 
 ## Features
