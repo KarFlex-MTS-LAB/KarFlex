@@ -62,35 +62,28 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            lifecycleScope.launch(Dispatchers.IO){
-                val existingUser = AppDatabase.getDatabase(this@RegisterActivity).UserDao().getUserByUsername(username)
-
-                if(existingUser != null) {
-                    runOnUiThread {
-                        Toast.makeText(this@RegisterActivity, "Username already exists", Toast.LENGTH_SHORT).show()
-                    }
-                    return@launch
-                }
-            }
-
             if(password.length < 6) {
                 Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if(phoneNumber.length < 10) {
+            if(phoneNumber.length < 10 || phoneNumber.any { !it.isDigit() }) {
                 Toast.makeText(this, "Phone number must be at least 10 digits", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val newUser = User(username = username, password = password, phoneNumber = phoneNumber)
             lifecycleScope.launch(Dispatchers.IO) {
-                AppDatabase.getDatabase(this@RegisterActivity).UserDao().insertAUser(newUser)
+                val dao = AppDatabase.getDatabase(this@RegisterActivity).UserDao()
+                if (dao.getUserByUsername(username) != null) {
+                    runOnUiThread { Toast.makeText(this@RegisterActivity, "Username already exists", Toast.LENGTH_SHORT).show() }
+                    return@launch
+                }
+                dao.insertAUser(User(username = username, password = password, phoneNumber = phoneNumber))
+                runOnUiThread {
+                    startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                    finish()
+                }
             }
-
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
         }
     }
 }

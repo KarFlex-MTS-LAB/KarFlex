@@ -111,6 +111,7 @@ class LoginActivity : AppCompatActivity() {
                         val intent = Intent(this@LoginActivity, OtpActivity::class.java)
                         intent.putExtra("KODE_OTP_ASLI",otpAngka);
                         intent.putExtra("NOMOR_HP", phoneNumber);
+                        intent.putExtra("USERNAME", existingUser.username)
                         startActivity(intent)
                     }
                 }

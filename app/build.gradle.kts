@@ -51,4 +51,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation("com.google.android.gms:play-services-auth-api-phone:18.0.1")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("com.google.android.gms:play-services-maps:19.0.0")
+    implementation("com.android.volley:volley:1.2.1")
 }

@@ -36,8 +36,10 @@
             android:name=".OtpActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".HomeActivity"
+        <activity android:name=".VehicleDetailActivity" android:exported="false" />
+        <activity android:name=".RentalHistoryActivity" android:exported="false" />
+        <activity android:name=".LocationActivity" android:exported="false" />
+        <activity android:name=".HomeActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

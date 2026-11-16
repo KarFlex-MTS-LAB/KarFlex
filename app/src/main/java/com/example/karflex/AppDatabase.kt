@@ -10,13 +10,13 @@ import com.example.karflex.data.entities.User
 import com.example.karflex.data.entities.Vehicle
 import com.example.karflex.data.dao.VehicleDAO
 import com.example.karflex.data.dao.UserDAO
-import com.example.karflex.data.repository.RentalRepository
 
 @Database(entities = [User::class,  Vehicle::class, Rental::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun VehicleDao(): VehicleDAO
     abstract fun UserDao(): UserDAO
+    abstract fun RentalDao(): RentalDAO
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null

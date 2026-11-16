@@ -14,6 +14,9 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_home)
+        getSharedPreferences("session", MODE_PRIVATE).edit()
+            .putString("username", intent.getStringExtra("USERNAME") ?: getSharedPreferences("session", MODE_PRIVATE).getString("username", null))
+            .apply()
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         if (savedInstanceState == null) {

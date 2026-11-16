@@ -4,6 +4,6 @@ import retrofit2.http.GET
 
 interface ApiService {
 
-    @GET("")
+    @GET("karflex.json")
     suspend fun getVehicles(): List<ItemDTO>
 }

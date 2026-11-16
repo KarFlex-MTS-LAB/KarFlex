@@ -1,14 +1,19 @@
 package com.example.karflex.data.repository
 import android.content.Context
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.Volley
 import com.example.karflex.AppDatabase
-import com.example.karflex.data.client.RetrofitClient
-import com.example.karflex.data.dao.ApiService
 import com.example.karflex.data.entities.Vehicle
 import com.example.karflex.data.entities.VehicleCard
 import com.example.karflex.data.entities.VehicleDetail
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.coroutines.resume
 import com.google.gson.annotations.SerializedName
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import org.json.JSONArray
 
 data class ItemDTO(
     val id: Int,
@@ -23,29 +28,35 @@ data class ItemDTO(
 
 class VehicleRepository(private val context: Context) {
 
-    suspend fun initialVehicle() {
-        try {
-            val response = RetrofitClient.apiService.getVehicles()
+    suspend fun initialVehicle() = suspendCancellableCoroutine<Unit> { continuation ->
+        val request = JsonArrayRequest(
+            Request.Method.GET,
+            JSON_URL,
+            null,
+            { response: JSONArray ->
+                CoroutineScope(Dispatchers.IO).launch {
+                    runCatching {
+                        for (index in 0 until response.length()) {
+                            val item = response.getJSONObject(index)
+                            AppDatabase.getDatabase(context).VehicleDao().insertAVehicle(Vehicle(
+                                VehicleId = item.getInt("id"), modelName = item.getString("model_name"),
+                                type = item.getString("type"), brand = item.getString("brand"),
+                                pricePerDay = item.getInt("price_per_day"), transmission = item.getString("transmission"),
+                                image = item.getString("image_url"), description = item.getString("description")
+                            ))
+                        }
+                    }
+                    if (continuation.isActive) continuation.resume(Unit)
+                }
+            },
+            { if (continuation.isActive) continuation.resume(Unit) }
+        )
+        Volley.newRequestQueue(context).add(request)
+        continuation.invokeOnCancellation { request.cancel() }
+    }
 
-            response.forEach { item ->
-                val vehicleEntity = Vehicle(
-                    VehicleId = item.id,
-                    modelName = item.modelName,
-                    type = item.type,
-                    brand = item.brand,
-                    pricePerDay = item.pricePerDay,
-                    transmission = item.transmission,
-                    image = item.image,
-                    description = item.description
-                )
-
-                AppDatabase.getDatabase(context).VehicleDao().insertAVehicle(vehicleEntity)
-            }
-            println("Successfully insert all data from the url to database")
-        } catch (e: Exception) {
-            println("ERROR DURING INSERT DATA TO DATABASE: ${e.message}")
-            e.printStackTrace()
-        }
+    companion object {
+        private const val JSON_URL = "https://gist.githubusercontent.com/axelkrnwn/01c506ac60735f553af951e550634b59/raw/08489b2ff76e1356a6df38d09948716628024195/karflex.json"
     }
 
     suspend fun getVehicle(): List<VehicleCard> {

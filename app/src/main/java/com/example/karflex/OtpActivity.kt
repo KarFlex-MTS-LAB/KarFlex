@@ -73,6 +73,7 @@ class OtpActivity : AppCompatActivity() {
         val mainView = findViewById<LinearLayout>(R.id.main)
         var kodeOtpAsli = intent.getStringExtra("KODE_OTP_ASLI")
         val phoneNumber = intent.getStringExtra("NOMOR_HP");
+        val username = intent.getStringExtra("USERNAME");
 
         val initialLeft = mainView.paddingLeft
         val initialTop = mainView.paddingTop
@@ -114,6 +115,7 @@ class OtpActivity : AppCompatActivity() {
                 Toast.makeText(this, "Successfully Verified", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, HomeActivity::class.java)
+                intent.putExtra("USERNAME", username)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
 
