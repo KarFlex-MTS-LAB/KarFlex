@@ -2,9 +2,7 @@ package com.example.karflex
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
-import android.telephony.SmsManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -22,10 +20,12 @@ import com.example.karflex.utils.SmsUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.jar.Manifest
 import kotlin.random.Random
 
 class LoginActivity : AppCompatActivity() {
+
+    private var pendingPhoneNumber: String? = null
+    private var pendingUsername: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,24 +98,53 @@ class LoginActivity : AppCompatActivity() {
                             android.Manifest.permission.SEND_SMS
                         ) != PackageManager.PERMISSION_GRANTED
                     ) {
+                        pendingPhoneNumber = phoneNumber
+                        pendingUsername = existingUser.username
                         ActivityCompat.requestPermissions(
                             this@LoginActivity,
                             arrayOf(android.Manifest.permission.SEND_SMS),
-                            100
+                            SMS_PERMISSION_REQUEST_CODE
                         )
                     } else {
-                        val otpAngka = Random.nextInt(1000, 9999).toString()
-
-                        SmsUtils.sentOtp(this@LoginActivity, phoneNumber, otpAngka);
-
-                        val intent = Intent(this@LoginActivity, OtpActivity::class.java)
-                        intent.putExtra("KODE_OTP_ASLI",otpAngka);
-                        intent.putExtra("NOMOR_HP", phoneNumber);
-                        intent.putExtra("USERNAME", existingUser.username)
-                        startActivity(intent)
+                        sendOtpAndOpen(phoneNumber, existingUser.username)
                     }
                 }
             }
         }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode != SMS_PERMISSION_REQUEST_CODE) return
+
+        val phoneNumber = pendingPhoneNumber
+        val username = pendingUsername
+        pendingPhoneNumber = null
+        pendingUsername = null
+
+        if (grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED && phoneNumber != null && username != null) {
+            sendOtpAndOpen(phoneNumber, username)
+        } else {
+            Toast.makeText(this, "SMS permission is required to send the login OTP", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun sendOtpAndOpen(phoneNumber: String, username: String) {
+        val otpCode = Random.nextInt(1000, 10000).toString()
+        SmsUtils.sentOtp(this, phoneNumber, otpCode)
+
+        startActivity(Intent(this, OtpActivity::class.java).apply {
+            putExtra("KODE_OTP_ASLI", otpCode)
+            putExtra("NOMOR_HP", phoneNumber)
+            putExtra("USERNAME", username)
+        })
+    }
+
+    companion object {
+        private const val SMS_PERMISSION_REQUEST_CODE = 100
     }
 }
