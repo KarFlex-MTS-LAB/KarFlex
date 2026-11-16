@@ -5,8 +5,9 @@ plugins {
 
 android {
     namespace = "com.example.karflex"
+    val ciCompileSdk = providers.gradleProperty("ciCompileSdk").orNull?.toInt() ?: 37
     compileSdk {
-        version = release(37)
+        version = release(ciCompileSdk)
     }
 
     defaultConfig {
