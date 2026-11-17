@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,14 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KarFlex">
+        <uses-permission android:name="android.permission.RECEIVE_SMS" />
+        <uses-permission android:name="android.permission.READ_SMS" />
         <activity
             android:name=".WelcomeActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="com.example.karflex.SMS_SENT" />
+                <action android:name="com.example.karflex.SMS_DELIVERED" />
             </intent-filter>
         </activity>
         <activity
